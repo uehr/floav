@@ -1,11 +1,12 @@
 require "analysis_tw_user.rb"
 
-class AnalysisTwUserController < ActionController::Base
+class AnalysisTwUserController < ApplicationController
     def index
     end
 
-    def show
+    def new
         analyzer = AnalysisTwUser.new(params[:id])
-        @ranking = analyzer.tweet_words_ranking()
+        ranking = analyzer.tweet_words_ranking
+        render :json => ranking
     end
 end
