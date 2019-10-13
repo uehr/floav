@@ -64,8 +64,9 @@ class AnalysisTwUser
 
     # 各要素の出現頻度を取得
     def count(array)
-        hash = Hash.new 0
-        array.inject(Hash.new(0)){|hash, a| hash[a] += 1; hash}.sort_by {|word, count| count}.reverse
+        array.sort.slice_when(&:!=).map { |x|
+            { text: x.first, count: x.size }
+        }.sort_by{|ele| ele[:count]}.reverse
     end
 
     # 文字内に含まれるURLを削除
