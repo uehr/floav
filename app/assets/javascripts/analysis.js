@@ -1,7 +1,8 @@
 const API_URL = "/analysis/"
 const TWITTER_INPUT_ID = "twitter-id"
-const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.15
-const WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
+const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.2
+const WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.1
+const CANVAS_ID = "canvas"
 const WORD_LIMIT = 30
 
 const tweetWordsCount = user_id => {
@@ -17,9 +18,9 @@ $(document).ready(() => {
         const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
         tweetWordsCount(twitter_id).then(word_count => {
             const sliced = word_count.slice(0, WORD_LIMIT)
-            drawWordCloud("word-cloud", sliced, 50)
+            drawWordCloud(CANVAS_ID, sliced, 50)
             $(window).on('resize', () => {
-                drawWordCloud("word-cloud", sliced)
+                drawWordCloud(CANVAS_ID, sliced)
             });
         })
     })
