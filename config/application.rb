@@ -17,6 +17,7 @@ module Floav
     config.load_defaults 5.2
     config.autoload_paths += %W(#{Rails.root}/lib)
     config.eager_load_paths += %W(#{Rails.root}/lib)
+    config.assets.compile = true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
