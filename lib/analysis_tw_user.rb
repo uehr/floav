@@ -1,10 +1,14 @@
 require 'natto'
 
 class AnalysisTwUser
-    def initialize(user_id)
+    def initialize(user_id, year_range=1, tweet_limit=1000)
         @user_id = user_id
         @mecab = Natto::MeCab.new
         @noise_words = ["gt", "lt", "amp", "it", "via", "with", "on", "and", "to"]
+        # ツイートの取得数 max 3,200
+        @TWEET_LIMIT = tweet_limit
+        # 取得対象期間(年)
+        @YEAR_RANGE = year_range
         @client = Twitter::REST::Client.new do |config|
             config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
             config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
@@ -13,16 +17,37 @@ class AnalysisTwUser
         end
     end
 
-    # 最大3,200ツイートを取得
+    # @TWEET_LIMIT個のツイートを取得
     def tweets
-        pages = 1..17
+        was_arrived_range_end = false
+        pages = 1..(@TWEET_LIMIT / 200)
         pages.inject([]) do |tweets, page|
-            tweets.concat(
-                @client.user_timeline(@user_id, options = {
+            if was_arrived_range_end
+                return tweets
+            end
+
+            geted_tweets = @client.user_timeline(@user_id, options = {
                     count: 200,
                     page: page
                 })
-            )
+
+            unless @YEAR_RANGE.nil?
+                since = @YEAR_RANGE.year.ago
+
+                # 一番昔のツイートが取得範囲を越えると
+                if geted_tweets.last.created_at.getlocal < since
+                    # 範囲を越えるインデックスを割り出す
+                    geted_tweets.each_with_index do |tw, idx|
+                        if tw.created_at.getlocal < since
+                            geted_tweets.slice!(0, idx)
+                            was_arrived_range_end = true
+                            break
+                        end
+                    end
+                end
+            end
+
+            tweets.concat(geted_tweets)
             tweets
         end
     end
@@ -65,8 +90,8 @@ class AnalysisTwUser
     # 各要素の出現頻度を取得
     def count(array)
         array.sort.slice_when(&:!=).map { |x|
-            { text: x.first, count: x.size }
-        }.sort_by{|ele| ele[:count]}.reverse
+            [ x.first, x.size ]
+        }.sort_by{|ele| ele.last}.reverse
     end
 
     # 文字内に含まれるURLを削除
