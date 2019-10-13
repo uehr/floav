@@ -29,7 +29,6 @@ class AnalysisTwUser
 
     # 日本語のツイート
     def jp_tweets
-        puts "hoge"
         self.tweets.select{|tw| tw.lang == "ja"}
     end
 
