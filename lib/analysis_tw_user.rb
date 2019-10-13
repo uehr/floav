@@ -29,6 +29,7 @@ class AnalysisTwUser
 
     # 日本語のツイート
     def jp_tweets
+        puts "hoge"
         self.tweets.select{|tw| tw.lang == "ja"}
     end
 
@@ -75,7 +76,7 @@ class AnalysisTwUser
 
     # ツイートに含まれる各単語の出現頻度
     def tweet_words_ranking(tweets=nil)
-        tweets ||= self.tweets
+        tweets ||= self.jp_tweets
         tweets_str = tweets.map{|tw|
             self.convert_kansuji self.url_removed tw.text
         }.join " "
