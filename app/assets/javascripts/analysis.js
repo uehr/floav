@@ -13,7 +13,6 @@ const tweetWordsCount = user_id => {
     })
 }
 
-
 $(document).ready(() => {
     $("#run-analysis").click(() => {
         const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
