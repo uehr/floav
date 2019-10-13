@@ -1,2 +1,3 @@
 https://github.com/heroku/heroku-buildpack-apt
 https://github.com/diasks2/heroku-buildpack-mecab
+https://github.com/uehr/heroku-buildpack-mecab-ipadic-neologd
