@@ -1,0 +1,5 @@
+libmecab-dev
+mecab-ipadic-utf8
+curl
+xz-utils
+file
