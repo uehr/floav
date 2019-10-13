@@ -1,7 +1,7 @@
 require 'natto'
 
 class AnalysisTwUser
-    def initialize(user_id, year_range=1, tweet_limit=1000)
+    def initialize(user_id, year_range=1, tweet_limit=500)
         @user_id = user_id
         @mecab = Natto::MeCab.new
         @noise_words = ["gt", "lt", "amp", "it", "via", "with", "on", "and", "to"]
