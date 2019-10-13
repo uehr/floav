@@ -1,1 +1,14 @@
-<h1>Welcome to floav</h1>
+<%= render :partial => "header" %>
+
+<div id="content">
+    <p id="app-description" class="headline">興味のあるワードを解析</p>
+
+    <div id="analysis-form">
+        <input type="text" class="input-lg form-control" id="twitter-id" placeholder="Twitter ID" autocomplete="off">
+        <input type="submit" value="解析" id="run-analysis" class="btn btn-lg btn-success">
+    </div>
+
+    <%= render :partial => "word_cloud" %>
+
+    <%= render :partial => "footer" %>
+</div>
