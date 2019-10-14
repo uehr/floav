@@ -21,7 +21,6 @@
     --body-color1: #1E1F26;
     --body-color2: #EEEEEE;
     --body-color3: #2C2C33;
-    --header-height: 70px;
 }
 
 ::-webkit-scrollbar {
@@ -31,7 +30,6 @@
 
 body {
     background-color: var(--body-color2) !important;
-    overflow: hidden !important;
     min-height: 100vh;
 }
 
