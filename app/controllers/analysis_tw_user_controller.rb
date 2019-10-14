@@ -5,13 +5,8 @@ class AnalysisTwUserController < ApplicationController
     end
 
     def new
-        begin
-            analyzer = AnalysisTwUser.new(params[:id])
-            ranking = analyzer.tweet_words_ranking
-        rescue => err
-            puts "errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
-            puts err
-        end
+        analyzer = AnalysisTwUser.new(params[:id])
+        ranking = analyzer.tweet_words_ranking
         render :json => ranking
     end
 end
