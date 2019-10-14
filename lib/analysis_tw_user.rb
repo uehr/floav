@@ -24,7 +24,7 @@ class AnalysisTwUser
 
     # @TWEET_LIMIT個のツイートを取得
     def tweets
-        pages = 1..(@TWEET_LIMIT / 200)
+        pages = 1..[1, (@TWEET_LIMIT / 200)].max
         pages.inject([]) do |tweets, page|
             geted_tweets = @client.user_timeline(@user_id, options = {
                     count: 200,
