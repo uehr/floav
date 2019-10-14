@@ -30,7 +30,7 @@
 }
 
 body {
-    background-color: var(--body-color3) !important;
+    background-color: var(--body-color2) !important;
     overflow: hidden !important;
     min-height: 100vh;
 }
