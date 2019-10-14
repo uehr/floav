@@ -33,9 +33,9 @@ p {
 }
 
 a {
-    text-decoration:none;
+    text-decoration:none !important;
     color: var(--theme-color) !important;
-    opacity:0.9;
+    opacity:0.9 !important;
 }
 
 a:hover {
