@@ -25,7 +25,7 @@
 }
 
 body {
-    background-color: var(--body-color3);
+    background-color: var(--body-color3) !important;
     min-height: 100vh;
 }
 
@@ -57,6 +57,10 @@ html {
 
 .theme-color {
     color: var(--theme-color);
+}
+
+#content {
+    margin-top: var(--header-height)
 }
 
 * {

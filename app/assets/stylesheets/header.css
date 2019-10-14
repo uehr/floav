@@ -1,0 +1,12 @@
+#logo {
+    height: var(--header-height)
+}
+
+#site-header {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--header-height);
+    background-color: var(--body-color3);
+    position: fixed;
+}

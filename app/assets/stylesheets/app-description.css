@@ -1,0 +1,26 @@
+#app-description {
+    font-size: 4vw;
+}
+
+.headline {
+	font-size: 5vw;
+	display: flex;
+	align-items: center;
+}
+
+.headline:before, .headline:after {
+	content: "";
+	flex-grow: 1;
+	height: 3px;
+	background: #444;
+	display: block;
+}
+
+.headline:before {
+	margin-right: .3em;
+}
+
+.headline:after {
+	margin-left: .3em;
+}
+
