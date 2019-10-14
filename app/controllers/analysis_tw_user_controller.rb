@@ -7,7 +7,7 @@ class AnalysisTwUserController < ApplicationController
 
     def new
         begin
-            analyzer = AnalysisTwUser.new(params[:id])
+            analyzer = AnalysisTwUser.new(params[:id], tweet_limit=250)
             ranking = analyzer.tweet_words_ranking
             # 情報を取得できない場合
             unless ranking.present?
