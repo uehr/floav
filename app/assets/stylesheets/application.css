@@ -26,7 +26,6 @@
 body {
     background-color: var(--body-color2) !important;
     min-height: 100vh;
-    overflow: hidden;
 }
 
 p {
