@@ -36,11 +36,7 @@ $(document).ready(() => {
             $(LOADING_ANIME_SELECTOR).hide()
             $(TWITTER_ID_SELECTOR).val("")
             enableButton(ANALYSIS_BUTTON_SELECTOR)
-
-            drawWordCloud(CANVAS_ID, sliced, 50)
-            $(window).on('resize', () => {
-                drawWordCloud(CANVAS_ID, sliced)
-            })
+            drawWordCloud(CANVAS_ID, sliced)
         }).fail(res => {
             location.reload()
         })
