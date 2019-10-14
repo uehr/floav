@@ -18,6 +18,8 @@ $(document).ready(() => {
             $(window).on('resize', () => {
                 drawWordCloud(CANVAS_ID, sliced)
             })
+        }).fail(res => {
+            location.reload()
         })
     })
 })
