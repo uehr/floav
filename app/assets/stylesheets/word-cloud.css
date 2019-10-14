@@ -1,7 +1,10 @@
 :root {
   --analysis-form-font-size: 5vw;
   --word-cloud-width: 100vw;
-  --word-cloud-height: 82vh;
+  --word-cloud-height: 80vh;
+  --word-cloud-height: calc(100vh - var(--analysis-form-height) - var(--header-height));
+  --word-cloud-height: -webkit-calc(100vh - var(--analysis-form-height) - var(--header-height));
+  --word-cloud-height: -moz-calc(100vh - var(--analysis-form-height) - var(--header-height));
 }
 
 #canvas {
