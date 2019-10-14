@@ -1,14 +1,16 @@
 <%= render :partial => "header" %>
 
 <div id="content">
-    <p id="app-description" class="headline">ツイートを解析</p>
-
-    <div id="analysis-form">
-        <input type="text" class="input-lg form-control" id="twitter-id" placeholder="Twitter ID" autocomplete="off">
-        <input type="submit" value="解析" id="run-analysis" class="btn btn-lg btn-success">
-    </div>
+    <p id="app-description" class="headline">最近関心がある事をツイートから分析</p>
 
     <%= render :partial => "word_cloud" %>
+
+    <div id="analysis-form" class="input-group">
+        <input type="text" class="input-lg form-control" id="twitter-id" placeholder="Twitter ID" autocomplete="off">
+        <span class="input-group-btn">
+            <input type="submit" id="run-analysis" class="btn btn-lg btn-success form-control" value="解析">
+        </span>
+    </div>
 
     <%= render :partial => "footer" %>
 </div>
