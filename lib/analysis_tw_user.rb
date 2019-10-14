@@ -1,7 +1,12 @@
 require 'natto'
+require "exceptions.rb"
 
 class AnalysisTwUser
     def initialize(user_id, year_range=1, tweet_limit=500)
+        unless user_id.present?
+            raise Exceptions::EmptyTwitterId
+        end
+
         @user_id = user_id
         @mecab = Natto::MeCab.new
         @noise_words = ["gt", "lt", "amp", "it", "via", "with", "on", "and", "to"]
