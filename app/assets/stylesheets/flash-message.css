@@ -1,5 +1,10 @@
+:root {
+    --flash-message-width: 100vw;
+}
+
 .alert {
-    width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+    width: var(--flash-message-width);
+    position: fixed;
+    z-index: 2;
+    top: var(--header-height)
 }
