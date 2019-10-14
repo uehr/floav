@@ -19,33 +19,12 @@ class AnalysisTwUser
 
     # @TWEET_LIMIT個のツイートを取得
     def tweets
-        was_arrived_range_end = false
         pages = 1..(@TWEET_LIMIT / 200)
         pages.inject([]) do |tweets, page|
-            if was_arrived_range_end
-                return tweets
-            end
-
             geted_tweets = @client.user_timeline(@user_id, options = {
                     count: 200,
                     page: page
                 })
-
-            unless @YEAR_RANGE.nil?
-                since = @YEAR_RANGE.year.ago
-
-                # 一番昔のツイートが取得範囲を越えると
-                if geted_tweets.last.created_at.getlocal < since
-                    # 範囲を越えるインデックスを割り出す
-                    geted_tweets.each_with_index do |tw, idx|
-                        if tw.created_at.getlocal < since
-                            geted_tweets.slice!(0, idx)
-                            was_arrived_range_end = true
-                            break
-                        end
-                    end
-                end
-            end
 
             tweets.concat(geted_tweets)
             tweets
@@ -55,6 +34,17 @@ class AnalysisTwUser
     # 日本語のツイート
     def jp_tweets
         self.tweets.select{|tw| tw.lang == "ja"}
+    end
+
+    # since_time以後のツイートを取得
+    def since_tweets(tweets, since_time)
+        tweets = tweets.sort_by(&:created_at).reverse
+        tweets.each_with_index do |tw, idx|
+            if tw.created_at < since_time
+                return tweets.slice(0, idx)
+            end
+        end
+        return tweets
     end
 
     # 単語を抜き出す
@@ -102,6 +92,11 @@ class AnalysisTwUser
     # ツイートに含まれる各単語の出現頻度
     def tweet_words_ranking(tweets=nil)
         tweets ||= self.jp_tweets
+
+        unless @YEAR_RANGE.nil?
+            tweets = self.since_tweets(tweets, @YEAR_RANGE.year.ago)
+        end
+
         tweets_str = tweets.map{|tw|
             self.convert_kansuji self.url_removed tw.text
         }.join " "
