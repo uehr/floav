@@ -1,13 +1,14 @@
-.loader {
-  border: 16px solid var(--body-color2);
-  border-top: 16px solid var(--theme-color);
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+:root {
+    --loading-size: 10vw;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+#loading {
+    z-index: 3;
+    position: fixed;
+    height: var(--loading-size);
+    width: var(--loading-size);
+    position: fixed;
+    top:calc(50% - var(--loading-size)/2);
+    left:calc(50% - var(--loading-size)/2);
+    display: none;
 }

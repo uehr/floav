@@ -12,8 +12,10 @@ const tweetWordsCount = user_id => {
 $(document).ready(() => {
     $("#run-analysis").click(() => {
         const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
+        $("#loading").show()
         tweetWordsCount(twitter_id).done(word_count => {
             const sliced = word_count.slice(0, WORD_LIMIT)
+            $("#loading").hide()
             drawWordCloud(CANVAS_ID, sliced, 50)
             $(window).on('resize', () => {
                 drawWordCloud(CANVAS_ID, sliced)
