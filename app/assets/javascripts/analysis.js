@@ -7,6 +7,7 @@ const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
 const LOADING_ANIME_SELECTOR = "#loading"
 const APP_DESCRIPTION_SELECTOR = "#app-description"
 const CANVAS_BACKGROUND_COLOR = "#EEEEEE"
+const APP_DESCRIPTION_FADEIN = 3000
 const WORD_LIMIT = 30
 let analyzed_twitter_id
 
@@ -54,6 +55,7 @@ const drawResult = () => {
 }
 
 $(document).ready(() => {
+    $(APP_DESCRIPTION_SELECTOR).fadeIn(APP_DESCRIPTION_FADEIN)
     $(ANALYSIS_BUTTON_SELECTOR).click(drawResult)
     $(TWITTER_ID_SELECTOR).on("keydown", function (e) {
         if (e.keyCode === 13) drawResult()
