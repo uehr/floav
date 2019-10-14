@@ -6,22 +6,18 @@ const CANVAS_ID = "canvas"
 const WORD_LIMIT = 30
 
 const tweetWordsCount = user_id => {
-    return new Promise(resolve => {
-        $.get(API_URL + user_id, {}, ranking => {
-            resolve(ranking)
-        })
-    })
+    return $.post(API_URL, { "id": user_id })
 }
 
 $(document).ready(() => {
     $("#run-analysis").click(() => {
         const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
-        tweetWordsCount(twitter_id).then(word_count => {
+        tweetWordsCount(twitter_id).done(word_count => {
             const sliced = word_count.slice(0, WORD_LIMIT)
             drawWordCloud(CANVAS_ID, sliced, 50)
             $(window).on('resize', () => {
                 drawWordCloud(CANVAS_ID, sliced)
-            });
+            })
         })
     })
 })
