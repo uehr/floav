@@ -1,9 +1,10 @@
 const API_URL = "/analysis/"
-const TWITTER_INPUT_ID = "twitter-id"
 const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.1
 const WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
 const CANVAS_ID = "canvas"
+const TWITTER_ID_SELECTOR = "#twitter-id"
 const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
+const LOADING_ANIME_SELECTOR = "#loading"
 const WORD_LIMIT = 30
 
 const tweetWordsCount = user_id => {
@@ -25,16 +26,16 @@ const disableButton = selector => {
 }
 
 $(document).ready(() => {
-    $("#run-analysis").click(() => {
-        const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
-        $("#loading").show()
+    $(ANALYSIS_BUTTON_SELECTOR).click(() => {
+        const twitter_id = $(TWITTER_ID_SELECTOR).val()
+        $(LOADING_ANIME_SELECTOR).show()
         clearCanvas(CANVAS_ID)
         disableButton(ANALYSIS_BUTTON_SELECTOR)
 
         tweetWordsCount(twitter_id).done(word_count => {
             const sliced = word_count.slice(0, WORD_LIMIT)
-            $("#loading").hide()
-            $(`#${TWITTER_INPUT_ID}`).val("")
+            $(LOADING_ANIME_SELECTOR).hide()
+            $(TWITTER_ID_SELECTOR).val("")
             enableButton(ANALYSIS_BUTTON_SELECTOR)
 
             drawWordCloud(CANVAS_ID, sliced, 50)
