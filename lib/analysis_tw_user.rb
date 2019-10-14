@@ -92,11 +92,6 @@ class AnalysisTwUser
     # ツイートに含まれる各単語の出現頻度
     def tweet_words_ranking(tweets=nil)
         tweets ||= self.jp_tweets
-
-        unless @YEAR_RANGE.nil?
-            tweets = self.since_tweets(tweets, @YEAR_RANGE.year.ago)
-        end
-
         tweets_str = tweets.map{|tw|
             self.convert_kansuji self.url_removed tw.text
         }.join " "
