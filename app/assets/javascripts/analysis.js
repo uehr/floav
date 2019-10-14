@@ -20,11 +20,11 @@ $(document).ready(() => {
         const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
         $("#loading").show()
         clearCanvas(CANVAS_ID)
-        $(`#${TWITTER_INPUT_ID}`).val("")
 
         tweetWordsCount(twitter_id).done(word_count => {
             const sliced = word_count.slice(0, WORD_LIMIT)
             $("#loading").hide()
+            $(`#${TWITTER_INPUT_ID}`).val("")
 
             drawWordCloud(CANVAS_ID, sliced, 50)
             $(window).on('resize', () => {
