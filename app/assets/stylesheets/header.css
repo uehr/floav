@@ -1,3 +1,7 @@
+:root {
+    --header-height: 70px;
+}
+
 #logo {
     height: var(--header-height)
 }
