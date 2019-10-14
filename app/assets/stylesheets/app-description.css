@@ -1,26 +1,11 @@
 #app-description {
-    font-size: 4vw;
+    font-size: 5vw;
+    text-align: center;
+    z-index: 3;
+    color: var(--body-color3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
-
-.headline {
-	font-size: 5vw;
-	display: flex;
-	align-items: center;
-}
-
-.headline:before, .headline:after {
-	content: "";
-	flex-grow: 1;
-	height: 3px;
-	background: #444;
-	display: block;
-}
-
-.headline:before {
-	margin-right: .3em;
-}
-
-.headline:after {
-	margin-left: .3em;
-}
-
