@@ -6,6 +6,7 @@ const TWITTER_ID_SELECTOR = "#twitter-id"
 const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
 const LOADING_ANIME_SELECTOR = "#loading"
 const APP_DESCRIPTION_SELECTOR = "#app-description"
+const CANVAS_BACKGROUND_COLOR = "#EEEEEE"
 const WORD_LIMIT = 30
 let analyzed_twitter_id
 
@@ -14,9 +15,16 @@ const tweetWordsCount = user_id => {
 }
 
 const clearCanvas = id => {
-    cvs = document.getElementById(id);
-    ctx = cvs.getContext('2d');
+    const cvs = document.getElementById(id);
+    const ctx = cvs.getContext('2d');
     ctx.clearRect(0, 0, cvs.width, cvs.height);
+}
+
+const setBackgroundColor = (id, color) => {
+    const cvs = document.getElementById(id);
+    const ctx = cvs.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, cvs.width, cvs.height);
 }
 
 const enableButton = selector => {
@@ -38,7 +46,7 @@ const drawResult = () => {
         $(LOADING_ANIME_SELECTOR).hide()
         $(TWITTER_ID_SELECTOR).val("")
         enableButton(ANALYSIS_BUTTON_SELECTOR)
-        drawWordCloud(CANVAS_ID, sliced)
+        drawWordCloud(CANVAS_ID, sliced, CANVAS_BACKGROUND_COLOR)
         analyzed_twitter_id = twitter_id
     }).fail(res => {
         location.reload()
@@ -46,16 +54,13 @@ const drawResult = () => {
 }
 
 $(document).ready(() => {
-    $(ANALYSIS_BUTTON_SELECTOR).click(() => {
-        drawResult()
-    })
-
+    $(ANALYSIS_BUTTON_SELECTOR).click(drawResult)
     $(TWITTER_ID_SELECTOR).on("keydown", function (e) {
         if (e.keyCode === 13) drawResult()
     });
 })
 
-const drawWordCloud = (canvas_id, list) => {
+const drawWordCloud = (canvas_id, list, background_color) => {
     const height = $(`#${canvas_id}`).height()
     const width = $(`#${canvas_id}`).width()
     const word_size_base = Math.min(height, width)
@@ -74,5 +79,8 @@ const drawWordCloud = (canvas_id, list) => {
         console.log(ele[1])
     })
 
-    WordCloud(document.getElementById(canvas_id), { list: list });
+    WordCloud(document.getElementById(canvas_id), {
+        list: list,
+        backgroundColor: background_color
+    });
 }
