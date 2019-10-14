@@ -27,24 +27,32 @@ const disableButton = selector => {
     $(selector).attr("disabled", "true")
 }
 
+const drawResult = () => {
+    const twitter_id = $(TWITTER_ID_SELECTOR).val()
+    $(LOADING_ANIME_SELECTOR).show()
+    $(APP_DESCRIPTION_SELECTOR).hide()
+    disableButton(ANALYSIS_BUTTON_SELECTOR)
+
+    tweetWordsCount(twitter_id).done(word_count => {
+        const sliced = word_count.slice(0, WORD_LIMIT)
+        $(LOADING_ANIME_SELECTOR).hide()
+        $(TWITTER_ID_SELECTOR).val("")
+        enableButton(ANALYSIS_BUTTON_SELECTOR)
+        drawWordCloud(CANVAS_ID, sliced)
+        analyzed_twitter_id = twitter_id
+    }).fail(res => {
+        location.reload()
+    })
+}
+
 $(document).ready(() => {
     $(ANALYSIS_BUTTON_SELECTOR).click(() => {
-        const twitter_id = $(TWITTER_ID_SELECTOR).val()
-        $(LOADING_ANIME_SELECTOR).show()
-        $(APP_DESCRIPTION_SELECTOR).hide()
-        disableButton(ANALYSIS_BUTTON_SELECTOR)
-
-        tweetWordsCount(twitter_id).done(word_count => {
-            const sliced = word_count.slice(0, WORD_LIMIT)
-            $(LOADING_ANIME_SELECTOR).hide()
-            $(TWITTER_ID_SELECTOR).val("")
-            enableButton(ANALYSIS_BUTTON_SELECTOR)
-            drawWordCloud(CANVAS_ID, sliced)
-            analyzed_twitter_id = twitter_id
-        }).fail(res => {
-            location.reload()
-        })
+        drawResult()
     })
+
+    $(TWITTER_ID_SELECTOR).on("keydown", function (e) {
+        if (e.keyCode === 13) drawResult()
+    });
 })
 
 const drawWordCloud = (canvas_id, list) => {
