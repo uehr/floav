@@ -9,13 +9,23 @@ const tweetWordsCount = user_id => {
     return $.post(API_URL, { "id": user_id })
 }
 
+const clearCanvas = id => {
+    cvs = document.getElementById(id);
+    ctx = cvs.getContext('2d');
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+}
+
 $(document).ready(() => {
     $("#run-analysis").click(() => {
         const twitter_id = $(`#${TWITTER_INPUT_ID}`).val()
         $("#loading").show()
+        clearCanvas(CANVAS_ID)
+        $(`#${TWITTER_INPUT_ID}`).val("")
+
         tweetWordsCount(twitter_id).done(word_count => {
             const sliced = word_count.slice(0, WORD_LIMIT)
             $("#loading").hide()
+
             drawWordCloud(CANVAS_ID, sliced, 50)
             $(window).on('resize', () => {
                 drawWordCloud(CANVAS_ID, sliced)
