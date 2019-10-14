@@ -24,8 +24,14 @@
     --header-height: 70px;
 }
 
+::-webkit-scrollbar {
+      display: none !important;
+      -webkit-appearance: none !important;
+}
+
 body {
     background-color: var(--body-color3) !important;
+    overflow: hidden !important;
     min-height: 100vh;
 }
 
@@ -60,7 +66,8 @@ html {
 }
 
 #content {
-    margin-top: var(--header-height)
+    margin-top: var(--header-height);
+    border: solid white;
 }
 
 * {
