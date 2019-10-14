@@ -5,6 +5,7 @@ const CANVAS_ID = "canvas"
 const TWITTER_ID_SELECTOR = "#twitter-id"
 const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
 const LOADING_ANIME_SELECTOR = "#loading"
+const APP_DESCRIPTION_SELECTOR = "#app-description"
 const WORD_LIMIT = 30
 
 const tweetWordsCount = user_id => {
@@ -29,6 +30,7 @@ $(document).ready(() => {
     $(ANALYSIS_BUTTON_SELECTOR).click(() => {
         const twitter_id = $(TWITTER_ID_SELECTOR).val()
         $(LOADING_ANIME_SELECTOR).show()
+        $(APP_DESCRIPTION_SELECTOR).hide()
         disableButton(ANALYSIS_BUTTON_SELECTOR)
 
         tweetWordsCount(twitter_id).done(word_count => {
