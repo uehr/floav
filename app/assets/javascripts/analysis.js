@@ -7,6 +7,7 @@ const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
 const LOADING_ANIME_SELECTOR = "#loading"
 const APP_DESCRIPTION_SELECTOR = "#app-description"
 const WORD_LIMIT = 30
+let analyzed_twitter_id
 
 const tweetWordsCount = user_id => {
     return $.post(API_URL, { "id": user_id })
@@ -39,6 +40,7 @@ $(document).ready(() => {
             $(TWITTER_ID_SELECTOR).val("")
             enableButton(ANALYSIS_BUTTON_SELECTOR)
             drawWordCloud(CANVAS_ID, sliced)
+            analyzed_twitter_id = twitter_id
         }).fail(res => {
             location.reload()
         })

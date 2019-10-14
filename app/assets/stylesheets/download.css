@@ -1,0 +1,13 @@
+:root {
+    --download-height: 10vh;
+    --download-width: 5vw;
+}
+
+#download {
+    z-index: 4;
+    height: var(--download-height);
+    width: var(--download-width);
+    position: fixed;
+    left: calc(50% - var(--download-width)/2);
+    bottom: var(--analysis-form-height);
+}
