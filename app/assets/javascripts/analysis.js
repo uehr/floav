@@ -29,7 +29,6 @@ $(document).ready(() => {
     $(ANALYSIS_BUTTON_SELECTOR).click(() => {
         const twitter_id = $(TWITTER_ID_SELECTOR).val()
         $(LOADING_ANIME_SELECTOR).show()
-        clearCanvas(CANVAS_ID)
         disableButton(ANALYSIS_BUTTON_SELECTOR)
 
         tweetWordsCount(twitter_id).done(word_count => {
