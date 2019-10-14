@@ -3,7 +3,11 @@
 }
 
 #logo {
-    height: var(--header-height)
+    height: var(--header-height);
+}
+
+#developer {
+    font-size: 2vh;
 }
 
 #site-header {
