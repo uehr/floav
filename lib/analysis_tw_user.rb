@@ -2,7 +2,7 @@ require 'natto'
 require "exceptions.rb"
 
 class AnalysisTwUser
-    def initialize(user_id, year_range=1, tweet_limit=500)
+    def initialize(user_id, tweet_limit: 500)
         unless user_id.present?
             raise Exceptions::EmptyTwitterId
         end
@@ -12,8 +12,8 @@ class AnalysisTwUser
         @noise_words = ["gt", "lt", "amp", "it", "via", "with", "on", "and", "to"]
         # ツイートの取得数 max 3,200
         @TWEET_LIMIT = tweet_limit
-        # 取得対象期間(年)
-        @YEAR_RANGE = year_range
+        # 1reqごとに取得出来るツイート数
+        @TWEET_LIMIT_OF_1REQ = 200
         @client = Twitter::REST::Client.new do |config|
             config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
             config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
@@ -24,13 +24,27 @@ class AnalysisTwUser
 
     # @TWEET_LIMIT個のツイートを取得
     def tweets
-        pages = 1..[1, (@TWEET_LIMIT / 200)].max
+        # ページに分割して取得する必要あり
+        page_count = @TWEET_LIMIT / @TWEET_LIMIT_OF_1REQ
+        unless @TWEET_LIMIT % @TWEET_LIMIT_OF_1REQ == 0
+            page_count += 1
+        end
+        page_count = [1, page_count].max
+        pages = 1..page_count
+        count = 0
         pages.inject([]) do |tweets, page|
+            if @TWEET_LIMIT < count + @TWEET_LIMIT_OF_1REQ
+                count_of_req = @TWEET_LIMIT - count
+            else
+                count_of_req = @TWEET_LIMIT_OF_1REQ
+            end
+
             geted_tweets = @client.user_timeline(@user_id, options = {
-                    count: 200,
+                    count: count_of_req,
                     page: page
                 })
 
+            count += count_of_req 
             tweets.concat(geted_tweets)
             tweets
         end
