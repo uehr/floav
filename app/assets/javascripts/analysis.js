@@ -6,6 +6,8 @@ const TWITTER_ID_SELECTOR = "#twitter-id"
 const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
 const LOADING_ANIME_SELECTOR = "#loading"
 const APP_DESCRIPTION_SELECTOR = "#app-description"
+const ANALYZED_ID_SELECTOR = "#analyzed-id"
+const ANALYZED_ID_FORMAT = "@<id>の解析結果"
 const CANVAS_BACKGROUND_COLOR = "#EEEEEE"
 const APP_DESCRIPTION_FADEIN = 3000
 const WORD_LIMIT = 30
@@ -19,6 +21,11 @@ const clearCanvas = id => {
     const cvs = document.getElementById(id);
     const ctx = cvs.getContext('2d');
     ctx.clearRect(0, 0, cvs.width, cvs.height);
+}
+
+const setAnalyzedId = id => {
+    text = ANALYZED_ID_FORMAT.replace("<id>", id)
+    $(ANALYZED_ID_SELECTOR).text(text).show()
 }
 
 const enableButton = selector => {
@@ -41,7 +48,7 @@ const drawResult = () => {
         $(TWITTER_ID_SELECTOR).val("")
         enableButton(ANALYSIS_BUTTON_SELECTOR)
         drawWordCloud(CANVAS_ID, sliced, CANVAS_BACKGROUND_COLOR)
-        analyzed_twitter_id = twitter_id
+        setAnalyzedId(twitter_id)
     }).fail(res => {
         location.reload()
     })
