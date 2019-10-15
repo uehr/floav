@@ -21,13 +21,6 @@ const clearCanvas = id => {
     ctx.clearRect(0, 0, cvs.width, cvs.height);
 }
 
-const setBackgroundColor = (id, color) => {
-    const cvs = document.getElementById(id);
-    const ctx = cvs.getContext('2d');
-    ctx.fillStyle = color;
-    ctx.fillRect(0, 0, cvs.width, cvs.height);
-}
-
 const enableButton = selector => {
     $(selector).removeAttr("disabled")
 }
