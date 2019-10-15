@@ -15,9 +15,9 @@ https://floav.herokuapp.com
 2.3.1
 
 ### Buldpack
-https://github.com/heroku/heroku-buildpack-multi
-* https://github.com/heroku/heroku-buildpack-apt
-* https://github.com/diasks2/heroku-buildpack-mecab
+[heroku-buildpack-multi](https://github.com/heroku/heroku-buildpack-multi)
+* [heroku-buildpack-apt](https://github.com/heroku/heroku-buildpack-apt)
+* [heroku-buildpack-mecab](https://github.com/diasks2/heroku-buildpack-mecab)
 
 ### Licence
 
