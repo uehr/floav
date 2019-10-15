@@ -1,24 +1,22 @@
-# README
+# Floav
+## ツイートから関心のあるワードを抽出
+https://floav.herokuapp.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+![floav](https://user-images.githubusercontent.com/26696733/66802289-e9306680-ef56-11e9-9e52-fb21b0b9ff16.png)
 
-* Ruby version
+### 使用技術
+* Ruby on Rails : バックエンドじっそう
+* MeCab : 形態素解析
+* Heroku : サーバー
+* AWS S3 : MeCab辞書を配置
 
-* System dependencies
+### Ruby version
+2.3.1
 
-* Configuration
+### Buldpack
+https://github.com/heroku/heroku-buildpack-multi
 
-* Database creation
+### Licence
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
