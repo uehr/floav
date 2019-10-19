@@ -30,7 +30,7 @@
     text-align: center;
 }
 
-@media screen and (max-width : 500px) {
+@media screen and (max-width : 767px) {
     #twitter-id {
         font-size: 3vh;
     }
