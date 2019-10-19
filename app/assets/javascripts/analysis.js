@@ -1,13 +1,16 @@
 const API_URL = "/analysis/"
 const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.17
 const WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
+const NOTIFY_SHOW_MS = 5000
 const CANVAS_ID = "canvas"
 const TWITTER_ID_SELECTOR = "#twitter-id"
 const ANALYSIS_BUTTON_SELECTOR = "#run-analysis"
 const LOADING_ANIME_SELECTOR = "#loading"
 const APP_DESCRIPTION_SELECTOR = "#app-description"
+const ANALYSIS_FORM_SELECTOR = "#anaylsis-form"
 const ANALYZED_ID_SELECTOR = "#analyzed-id"
-const ANALYZED_ID_FORMAT = "@<id>の解析結果"
+const ANALYZED_ID_FORMAT = "@<id>"
+const TWITTER_PROFILE_URL_FORMAT = "https://twitter.com/<id>"
 const CANVAS_BACKGROUND_COLOR = "#EEEEEE"
 const APP_DESCRIPTION_FADEIN = 3000
 const WORD_LIMIT = 30
@@ -24,8 +27,10 @@ const clearCanvas = id => {
 }
 
 const setAnalyzedId = id => {
-    text = ANALYZED_ID_FORMAT.replace("<id>", id)
+    const text = ANALYZED_ID_FORMAT.replace("<id>", id)
+    const profile_url = TWITTER_PROFILE_URL_FORMAT.replace("<id>", id)
     $(ANALYZED_ID_SELECTOR).text(text).show()
+    $(ANALYZED_ID_SELECTOR).attr("href", profile_url)
 }
 
 const enableButton = selector => {
@@ -53,7 +58,12 @@ const drawResult = () => {
         });
         setAnalyzedId(twitter_id)
     }).fail(res => {
-        location.reload()
+        const error_msg = res.responseJSON.error
+        $.notify(error_msg, {
+            autoHideDelay: NOTIFY_SHOW_MS,
+        })
+        enableButton(ANALYSIS_BUTTON_SELECTOR)
+        $(LOADING_ANIME_SELECTOR).hide()
     })
 }
 
