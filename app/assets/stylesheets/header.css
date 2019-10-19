@@ -30,7 +30,7 @@
     height: var(--header-height);
     background-color: var(--body-color3);
     vertical-align: middle;
-    position: absolute;
+    position: fixed;
 }
 
 @media screen and (max-width : 767px) {
