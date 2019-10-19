@@ -48,6 +48,9 @@ const drawResult = () => {
         $(TWITTER_ID_SELECTOR).val("")
         enableButton(ANALYSIS_BUTTON_SELECTOR)
         drawWordCloud(CANVAS_ID, sliced, CANVAS_BACKGROUND_COLOR)
+        $(window).on('resize', () => {
+            drawWordCloud(CANVAS_ID, sliced, CANVAS_BACKGROUND_COLOR)
+        });
         setAnalyzedId(twitter_id)
     }).fail(res => {
         location.reload()
