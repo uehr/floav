@@ -32,3 +32,13 @@
     vertical-align: middle;
     position: absolute;
 }
+
+@media screen and (max-width : 500px) {
+    :root {
+        --header-height: 5vh;
+    }
+
+    #analyzed-id {
+        font-size: 3vh;
+    }
+}

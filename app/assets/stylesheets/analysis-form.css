@@ -29,3 +29,17 @@
     z-index: 3;
     text-align: center;
 }
+
+@media screen and (max-width : 500px) {
+    #twitter-id {
+        font-size: 3vh;
+    }
+
+    #run-analysis {
+        font-size: 3vh;
+    }
+
+    :root {
+        --analysis-form-height: 10vh;
+    }
+}
