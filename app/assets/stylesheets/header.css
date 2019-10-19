@@ -15,6 +15,7 @@
     text-align: center;
     color: var(--twitter-color);
     height: var(--header-height);
+    margin-top: 1vh;
     width: 100vw;
 }
 
