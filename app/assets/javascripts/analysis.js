@@ -96,7 +96,6 @@ const drawWordCloud = (canvas_id, list, background_color) => {
     const ratio = Math.max(...counts) / word_max_size
     list.forEach(ele => {
         ele[1] = Math.max(Math.round(ele[1] / ratio), word_min_size)
-        console.log(ele[1])
     })
 
     WordCloud(document.getElementById(canvas_id), {
