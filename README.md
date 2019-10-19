@@ -12,7 +12,7 @@ https://floav.herokuapp.com
 * AWS S3 : MeCab辞書を配置
 
 ### Ruby version
-2.3.1
+2.4.0
 
 ### Buldpack
 [heroku-buildpack-multi](https://github.com/heroku/heroku-buildpack-multi)
