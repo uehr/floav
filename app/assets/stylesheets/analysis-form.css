@@ -1,21 +1,21 @@
 :root {
-  --analysis-form-height: 10vh;
+  --analysis-form-height: 15vh;
   --analysis-form-width: 100vw;
-  --analysis-form-font-size: 5vw;
+  --analysis-form-font-size: 100px;
 }
 
 #twitter-id {
     margin: 0;
     height: 100%;
-    font-size: var(--analysis-form-font-size);
     text-align: center;
     border-radius: 0;
+    font-size: 5vh;
 }
 
 #run-analysis {
     height: 100%;
     width: 20vw;
-    font-size: var(--analysis-form-font-size);
+    font-size: 5vh;
 }
 
 #analysis-form {
@@ -26,5 +26,6 @@
     margin-right: auto;
     position: fixed;
     bottom: 0;
+    z-index: 3;
     text-align: center;
 }
