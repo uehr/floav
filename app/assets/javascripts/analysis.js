@@ -1,5 +1,5 @@
 const API_URL = "/analysis/"
-const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.2
+const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.17
 const WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
 const CANVAS_ID = "canvas"
 const TWITTER_ID_SELECTOR = "#twitter-id"
