@@ -1,9 +1,21 @@
 :root {
-    --header-height: 7vh;
+    --header-height: 10vh;
 }
 
 #logo {
     height: var(--header-height);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#analyzed-id {
+    display: block;
+    font-size: 6vh;
+    text-align: center;
+    color: var(--twitter-color);
+    height: var(--header-height);
+    width: 100vw;
 }
 
 #developer {
@@ -14,9 +26,9 @@
     top: 0;
     left: 0;
     width: 100vw;
-    text-align: center;
     z-index: 2;
     height: var(--header-height);
     background-color: var(--body-color3);
-    position: fixed;
+    vertical-align: middle;
+    position: absolute;
 }
