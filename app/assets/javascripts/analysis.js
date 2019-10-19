@@ -1,6 +1,4 @@
 const API_URL = "/analysis/"
-const WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.17
-const WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
 const NOTIFY_SHOW_MS = 5000
 const CANVAS_ID = "canvas"
 const TWITTER_ID_SELECTOR = "#twitter-id"
@@ -14,6 +12,13 @@ const TWITTER_PROFILE_URL_FORMAT = "https://twitter.com/<id>"
 const CANVAS_BACKGROUND_COLOR = "#EEEEEE"
 const APP_DESCRIPTION_FADEIN = 3000
 const WORD_LIMIT = 30
+const SMARTPHONE_WIDTH = 767
+let WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.17
+let WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
+if ($(window).width() <= SMARTPHONE_WIDTH) {
+    WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.12
+    WORD_MIN_SIZE_RATIO_TO_SCREEN = 0.05
+}
 let analyzed_twitter_id
 
 const tweetWordsCount = user_id => {
