@@ -1,7 +1,7 @@
 module ApplicationHelper
     def default_meta_tags
         {
-        title:       "Floav",
+        title: "Floav | ツイートから関心のあるワードを抽出",
         description: "ツイートから関心のあるワードを抽出",
         noindex: ! Rails.env.production?,
         charset: "UTF-8",
