@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'twitter'
 gem 'jquery-rails'
 gem 'natto'
+gem 'meta-tags'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
