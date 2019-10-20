@@ -10,7 +10,7 @@ const ANALYZED_ID_SELECTOR = "#analyzed-id"
 const ANALYZED_ID_FORMAT = "@<id>"
 const TWITTER_PROFILE_URL_FORMAT = "https://twitter.com/<id>"
 const CANVAS_BACKGROUND_COLOR = "#EEEEEE"
-const APP_DESCRIPTION_FADEIN = 3000
+const FADE_IO_MS = 3000
 const WORD_LIMIT = 30
 const SMARTPHONE_WIDTH = 767
 let WORD_MAX_SIZE_RATIO_TO_SCREEN = 0.17
@@ -34,7 +34,7 @@ const clearCanvas = id => {
 const setAnalyzedId = id => {
     const text = ANALYZED_ID_FORMAT.replace("<id>", id)
     const profile_url = TWITTER_PROFILE_URL_FORMAT.replace("<id>", id)
-    $(ANALYZED_ID_SELECTOR).text(text).show()
+    $(ANALYZED_ID_SELECTOR).text(text).fadeIn(FADE_IO_MS)
     $(ANALYZED_ID_SELECTOR).attr("href", profile_url)
 }
 
@@ -54,6 +54,7 @@ const drawResult = () => {
 
     tweetWordsCount(twitter_id).done(word_count => {
         const sliced = word_count.slice(0, WORD_LIMIT)
+        $(ANALYZED_ID_SELECTOR).fadeIn(FADE_IO_MS)
         $(LOADING_ANIME_SELECTOR).hide()
         $(TWITTER_ID_SELECTOR).val("")
         enableButton(ANALYSIS_BUTTON_SELECTOR)
@@ -68,12 +69,13 @@ const drawResult = () => {
             autoHideDelay: NOTIFY_SHOW_MS,
         })
         enableButton(ANALYSIS_BUTTON_SELECTOR)
-        $(LOADING_ANIME_SELECTOR).hide()
+        $(LOADING_ANIME_SELECTOR).fadeOut(FADE_IO_MS)
     })
 }
 
 $(document).ready(() => {
-    $(APP_DESCRIPTION_SELECTOR).fadeIn(APP_DESCRIPTION_FADEIN)
+    $(ANALYZED_ID_SELECTOR).hide()
+    $(APP_DESCRIPTION_SELECTOR).fadeIn(FADE_IO_MS)
     $(ANALYSIS_BUTTON_SELECTOR).click(drawResult)
     $(TWITTER_ID_SELECTOR).on("keydown", function (e) {
         if (e.keyCode === 13) drawResult()
