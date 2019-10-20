@@ -6,21 +6,8 @@
     height: var(--header-height);
     position: absolute;
     top: 0;
-    left: 0;
-}
-
-#analyzed-id {
-    display: block;
-    font-size: 6vh;
-    text-align: center;
-    color: var(--twitter-color);
-    height: var(--header-height);
-    margin-top: 1vh;
-    width: 100vw;
-}
-
-#developer {
-    font-size: 2vh;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 #site-header {
@@ -30,7 +17,6 @@
     z-index: 2;
     height: var(--header-height);
     background-color: var(--body-color3);
-    vertical-align: middle;
     position: fixed;
 }
 

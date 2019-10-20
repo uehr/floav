@@ -10,3 +10,12 @@
     height: var(--word-cloud-height);
     position: fixed;
 }
+
+#analyzed-id {
+    position: fixed;
+    color: var(--theme-color);
+    font-size: 3vh;
+    top: var(--header-height);
+    left: 0;
+    z-index: 2;
+}
