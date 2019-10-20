@@ -24,9 +24,4 @@
     :root {
         --header-height: 7vh;
     }
-
-    #analyzed-id {
-        margin-top: 2vh;
-        font-size: 3vh;
-    }
 }
