@@ -11,9 +11,9 @@ class AnalysisTwUser
         @mecab = Natto::MeCab.new
         @noise_words = ["gt", "lt", "amp", "it", "via", "with", "on", "and", "to"]
         # ツイートの取得数 max 3,200
-        @TWEET_LIMIT = tweet_limit
+        @tweet_limit = tweet_limit
         # 1reqごとに取得出来るツイート数
-        @TWEET_LIMIT_OF_1REQ = 200
+        @tweet_limit_in_1req = 200
         @client = Twitter::REST::Client.new do |config|
             config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
             config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
@@ -22,30 +22,30 @@ class AnalysisTwUser
         end
     end
 
-    # @TWEET_LIMIT個のツイートを取得
+    # @tweet_limit個のツイートを取得
     def tweets
         # ページに分割して取得する必要あり
-        page_count = @TWEET_LIMIT / @TWEET_LIMIT_OF_1REQ
-        unless @TWEET_LIMIT % @TWEET_LIMIT_OF_1REQ == 0
+        page_count = @tweet_limit / @tweet_limit_in_1req
+        unless @tweet_limit % @tweet_limit_in_1req == 0
             page_count += 1
         end
         page_count = [1, page_count].max
         pages = 1..page_count
         count = 0
         pages.inject([]) do |tweets, page|
-            if @TWEET_LIMIT < count + @TWEET_LIMIT_OF_1REQ
-                count_of_req = @TWEET_LIMIT - count
+            if @tweet_limit < count + @tweet_limit_in_1req
+                count_in_req = @tweet_limit - count
             else
-                count_of_req = @TWEET_LIMIT_OF_1REQ
+                count_in_req = @tweet_limit_in_1req
             end
 
-            geted_tweets = @client.user_timeline(@user_id, options = {
-                    count: count_of_req,
+            tweets_on_this_page = @client.user_timeline(@user_id, options = {
+                    count: count_in_req,
                     page: page
                 })
 
-            count += count_of_req 
-            tweets.concat(geted_tweets)
+            count += count_in_req 
+            tweets.concat(tweets_on_this_page)
             tweets
         end
     end
